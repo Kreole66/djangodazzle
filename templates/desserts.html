@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Desserts</title>
+</head>
+<body>
+
+<form method="GET" action="{% url 'dessert_recipes' %}">
+    <label>
+        <input type="text" name="q" placeholder="Search recipes...">
+    </label>
+    <button type="submit">Search</button>
+</form>
+
+
+    <h1>Desserts</h1>
+    <ul>
+        {% for recipe in recipes %}
+            <li>
+                <a href="{% url 'recipe_detail' recipe_id=recipe.id %}">
+                    <h2>{{ recipe.title }}</h2>
+                    <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" width="200">
+                    <p>Cooking Duration: {{ recipe.cooking_duration }} minutes</p>
+                    <p>Difficulty: {{ recipe.difficulty }}</p>
+                </a>
+            </li>
+        {% empty %}
+            <p>No recipes available.</p>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

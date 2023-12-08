@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create a New Recipe</title>
+
+     <nav id="menu"><ul class="links"><li><a href="{% url 'all_recipes' %}">Home</a></li>
+        <li><a href="{% url 'register' %}">Join the Community</a></li>
+        <li><a href="{% url 'user_login' %}">Login</a></li>
+        <li><a href="{% url 'profile_detail' %}">Profile</a></li>
+        <li><a href="{% url 'breakfast_recipes' %}">Breakfasts</a></li>
+        <li><a href="{% url 'lunch_recipes' %}">Lunches</a></li>
+        <li><a href="{% url 'dinner_recipes' %}">Dinners</a></li>
+        <li><a href="{% url 'dessert_recipes' %}">Desserts</a></li>
+				</ul>
+    </nav>
+
+</head>
+<body>
+
+    <h1>Create a New Recipe</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ recipe_form.as_p }}
+
+        <button type="submit">Save Recipe</button>
+    </form>
+
+
+</body>
+</html>

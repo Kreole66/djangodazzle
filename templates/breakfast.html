@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Breakfast</title>
+
+     <nav id="menu"><ul class="links"><li><a href="{% url 'all_recipes' %}">Home</a></li>
+        <li><a href="{% url 'register' %}">Join the Community</a></li>
+        <li><a href="{% url 'user_login' %}">Login</a></li>
+        <li><a href="{% url 'profile_detail' %}">Profile</a></li>
+        <li><a href="{% url 'breakfast_recipes' %}">Breakfasts</a></li>
+        <li><a href="{% url 'lunch_recipes' %}">Lunches</a></li>
+        <li><a href="{% url 'dinner_recipes' %}">Dinners</a></li>
+        <li><a href="{% url 'dessert_recipes' %}">Desserts</a></li>
+				</ul>
+    </nav>
+
+</head>
+<body>
+
+<form method="GET" action="{% url 'breakfast_recipes' %}">
+    <label>
+        <input type="text" name="q" placeholder="Search recipes...">
+    </label>
+    <button type="submit">Search</button>
+</form>
+
+
+    <h1>Breakfasts</h1>
+    <ul>
+        {% for recipe in recipes %}
+            <li>
+                <a href="{% url 'recipe_detail' recipe_id=recipe.id %}">
+                    <h2>{{ recipe.title }}</h2>
+                    <p>Cooking Duration: {{ recipe.cooking_duration }} minutes</p>
+                    <p>Difficulty: {{ recipe.difficulty }}</p>
+                </a>
+            </li>
+        {% empty %}
+            <p>No recipes available.</p>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
